@@ -22,7 +22,7 @@ const Login = () => {
   const handleGoogleLogin = () => {
     googleLogin().then((result) => {
       fetch(
-        "https://repliq-h4nhqhae5-iamnahid591998-gmailcom.vercel.app/users",
+        "https://repliq-cbgfolqwz-iamnahid591998-gmailcom.vercel.app/users",
         {
           method: "POST",
           headers: {
@@ -48,7 +48,7 @@ const Login = () => {
         Swal.fire("Good job!", "Login Success!", "success");
         navigate(from, { replace: true });
         fetch(
-          "https://repliq-h4nhqhae5-iamnahid591998-gmailcom.vercel.app/users",
+          "https://repliq-cbgfolqwz-iamnahid591998-gmailcom.vercel.app/users",
           {
             method: "POST",
             headers: {

@@ -5,7 +5,7 @@ const Banner = () => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
     fetch(
-      "https://repliq-h4nhqhae5-iamnahid591998-gmailcom.vercel.app/products"
+      "https://repliq-cbgfolqwz-iamnahid591998-gmailcom.vercel.app/products"
     )
       .then((res) => res.json())
       .then((data) => setProducts(data));
@@ -14,7 +14,7 @@ const Banner = () => {
   // Function to handle adding a product to the cart
   const handleAddToCart = (product) => {
     // Make a POST request to your server with the product details
-    fetch("https://repliq-h4nhqhae5-iamnahid591998-gmailcom.vercel.app/carts", {
+    fetch("https://repliq-cbgfolqwz-iamnahid591998-gmailcom.vercel.app/carts", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

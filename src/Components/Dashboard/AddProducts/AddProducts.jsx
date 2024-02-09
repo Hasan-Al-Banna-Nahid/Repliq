@@ -32,7 +32,7 @@ const AddProducts = () => {
           setPhoto(data.data.display_url);
           console.log(data.data.display_url);
           fetch(
-            "https://repliq-h4nhqhae5-iamnahid591998-gmailcom.vercel.app/products",
+            "https://repliq-cbgfolqwz-iamnahid591998-gmailcom.vercel.app/products",
             {
               method: "POST",
               headers: { "Content-type": "application/json" },

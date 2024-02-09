@@ -4,13 +4,13 @@ import toast, { Toaster } from "react-hot-toast";
 const Users = () => {
   const [users, setUsers] = useState([]);
   useEffect(() => {
-    fetch("https://repliq-h4nhqhae5-iamnahid591998-gmailcom.vercel.app/users")
+    fetch("https://repliq-cbgfolqwz-iamnahid591998-gmailcom.vercel.app/users")
       .then((res) => res.json())
       .then((data) => setUsers(data));
   }, []);
   const handleMakeAdmin = (user) => {
     fetch(
-      `https://repliq-h4nhqhae5-iamnahid591998-gmailcom.vercel.app/users/admin/${user._id}`,
+      `https://repliq-cbgfolqwz-iamnahid591998-gmailcom.vercel.app/users/admin/${user._id}`,
       {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },

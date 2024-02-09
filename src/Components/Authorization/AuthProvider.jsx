@@ -40,7 +40,7 @@ const AuthProvider = ({ children }) => {
       if (currentUser) {
         axios
           .post(
-            "https://repliq-h4nhqhae5-iamnahid591998-gmailcom.vercel.app/jwt",
+            "https://repliq-cbgfolqwz-iamnahid591998-gmailcom.vercel.app/jwt",
             {
               email: currentUser.email,
             }

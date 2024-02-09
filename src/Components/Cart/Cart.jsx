@@ -7,14 +7,14 @@ const Cart = () => {
   const [products, setProducts] = useState([]);
   const { user } = useContext(AuthContext);
   useEffect(() => {
-    fetch("https://repliq-h4nhqhae5-iamnahid591998-gmailcom.vercel.app/carts")
+    fetch("https://repliq-cbgfolqwz-iamnahid591998-gmailcom.vercel.app/carts")
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);
   const handleRemoveItem = (product) => {
     console.log(product._id);
     fetch(
-      `https://repliq-h4nhqhae5-iamnahid591998-gmailcom.vercel.app/carts/${product._id}`,
+      `https://repliq-cbgfolqwz-iamnahid591998-gmailcom.vercel.app/carts/${product._id}`,
       {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
@@ -30,7 +30,7 @@ const Cart = () => {
   };
   const handleConfirmOrder = (product) => {
     fetch(
-      `https://repliq-h4nhqhae5-iamnahid591998-gmailcom.vercel.app/orders/${product._id}`,
+      `https://repliq-cbgfolqwz-iamnahid591998-gmailcom.vercel.app/orders/${product._id}`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },

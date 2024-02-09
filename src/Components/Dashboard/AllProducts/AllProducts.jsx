@@ -4,7 +4,7 @@ const AllProducts = () => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
     fetch(
-      "https://repliq-h4nhqhae5-iamnahid591998-gmailcom.vercel.app/products"
+      "https://repliq-cbgfolqwz-iamnahid591998-gmailcom.vercel.app/products"
     )
       .then((res) => res.json())
       .then((data) => setProducts(data));

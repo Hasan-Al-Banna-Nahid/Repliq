@@ -5,7 +5,7 @@ const OrderList = () => {
   const [orders, setOrders] = useState([]);
   const [user, setUser] = useState("");
   useEffect(() => {
-    fetch("https://repliq-h4nhqhae5-iamnahid591998-gmailcom.vercel.app/orders")
+    fetch("https://repliq-cbgfolqwz-iamnahid591998-gmailcom.vercel.app/orders")
       .then((res) => res.json())
       .then((data) => setOrders(data));
   }, []);
@@ -15,7 +15,7 @@ const OrderList = () => {
   console.log(orders);
   const handleRemoveProduct = (order) => {
     fetch(
-      `https://repliq-h4nhqhae5-iamnahid591998-gmailcom.vercel.app/orders/${order._id}`,
+      `https://repliq-cbgfolqwz-iamnahid591998-gmailcom.vercel.app/orders/${order._id}`,
       {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
@@ -31,7 +31,7 @@ const OrderList = () => {
   };
   const handleConfirmOrder = (order) => {
     fetch(
-      `https://repliq-h4nhqhae5-iamnahid591998-gmailcom.vercel.app/sendConfirmEmail/${order._id}`,
+      `https://repliq-cbgfolqwz-iamnahid591998-gmailcom.vercel.app/sendConfirmEmail/${order._id}`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
