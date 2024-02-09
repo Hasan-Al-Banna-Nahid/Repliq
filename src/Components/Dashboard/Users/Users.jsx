@@ -4,15 +4,18 @@ import toast, { Toaster } from "react-hot-toast";
 const Users = () => {
   const [users, setUsers] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/users")
+    fetch("https://repliq-h4nhqhae5-iamnahid591998-gmailcom.vercel.app/users")
       .then((res) => res.json())
       .then((data) => setUsers(data));
   }, []);
   const handleMakeAdmin = (user) => {
-    fetch(`http://localhost:5000/users/admin/${user._id}`, {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-    })
+    fetch(
+      `https://repliq-h4nhqhae5-iamnahid591998-gmailcom.vercel.app/users/admin/${user._id}`,
+      {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data) {

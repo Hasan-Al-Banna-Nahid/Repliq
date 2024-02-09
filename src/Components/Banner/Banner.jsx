@@ -4,7 +4,9 @@ import toast, { Toaster } from "react-hot-toast";
 const Banner = () => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/products")
+    fetch(
+      "https://repliq-h4nhqhae5-iamnahid591998-gmailcom.vercel.app/products"
+    )
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);
@@ -12,7 +14,7 @@ const Banner = () => {
   // Function to handle adding a product to the cart
   const handleAddToCart = (product) => {
     // Make a POST request to your server with the product details
-    fetch("http://localhost:5000/carts", {
+    fetch("https://repliq-h4nhqhae5-iamnahid591998-gmailcom.vercel.app/carts", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

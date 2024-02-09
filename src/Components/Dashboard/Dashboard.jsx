@@ -5,7 +5,7 @@ import useAdmin from "../Hooks/useAdmin";
 const Dashboard = () => {
   const [user, setUser] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/users")
+    fetch("https://repliq-h4nhqhae5-iamnahid591998-gmailcom.vercel.app/users")
       .then((res) => res.json())
       .then((data) => setUser(data));
   }, []);

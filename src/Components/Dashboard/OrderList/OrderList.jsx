@@ -5,7 +5,7 @@ const OrderList = () => {
   const [orders, setOrders] = useState([]);
   const [user, setUser] = useState("");
   useEffect(() => {
-    fetch("http://localhost:5000/orders")
+    fetch("https://repliq-h4nhqhae5-iamnahid591998-gmailcom.vercel.app/orders")
       .then((res) => res.json())
       .then((data) => setOrders(data));
   }, []);
@@ -14,10 +14,13 @@ const OrderList = () => {
   }, []);
   console.log(orders);
   const handleRemoveProduct = (order) => {
-    fetch(`http://localhost:5000/orders/${order._id}`, {
-      method: "DELETE",
-      headers: { "Content-Type": "application/json" },
-    })
+    fetch(
+      `https://repliq-h4nhqhae5-iamnahid591998-gmailcom.vercel.app/orders/${order._id}`,
+      {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.deletedCount >= 1) {
@@ -27,15 +30,18 @@ const OrderList = () => {
       });
   };
   const handleConfirmOrder = (order) => {
-    fetch(`http://localhost:5000/sendConfirmEmail/${order._id}`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        product: order.name,
-        email: order.user.email,
-        user: order?.user?.displayName,
-      }),
-    })
+    fetch(
+      `https://repliq-h4nhqhae5-iamnahid591998-gmailcom.vercel.app/sendConfirmEmail/${order._id}`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          product: order.name,
+          email: order.user.email,
+          user: order?.user?.displayName,
+        }),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data && data.insertedId) {

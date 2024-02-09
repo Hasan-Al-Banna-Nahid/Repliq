@@ -3,7 +3,9 @@ import React, { useEffect, useState } from "react";
 const AllProducts = () => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/products")
+    fetch(
+      "https://repliq-h4nhqhae5-iamnahid591998-gmailcom.vercel.app/products"
+    )
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);

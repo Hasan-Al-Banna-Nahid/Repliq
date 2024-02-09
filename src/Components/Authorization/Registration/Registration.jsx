@@ -30,16 +30,19 @@ const Registration = () => {
 
   const handleGoogleLogin = () => {
     googleLogin().then((result) => {
-      fetch("http://localhost:5000/users", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: result.user.displayName,
-          email: result.user.email,
-        }),
-      });
+      fetch(
+        "https://repliq-h4nhqhae5-iamnahid591998-gmailcom.vercel.app/users",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: result.user.displayName,
+            email: result.user.email,
+          }),
+        }
+      );
     });
     navigate(from, { replace: true });
   };
@@ -59,13 +62,16 @@ const Registration = () => {
       MySwal.fire("Good job!", "You Account Is Created!", "success");
       reset();
       navigate("/login");
-      fetch("http://localhost:5000/users", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ name: data.name, email: data.email }),
-      });
+      fetch(
+        "https://repliq-h4nhqhae5-iamnahid591998-gmailcom.vercel.app/users",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ name: data.name, email: data.email }),
+        }
+      );
     });
   };
   return (

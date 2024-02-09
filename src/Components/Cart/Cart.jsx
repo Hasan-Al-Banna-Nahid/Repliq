@@ -7,16 +7,19 @@ const Cart = () => {
   const [products, setProducts] = useState([]);
   const { user } = useContext(AuthContext);
   useEffect(() => {
-    fetch("http://localhost:5000/carts")
+    fetch("https://repliq-h4nhqhae5-iamnahid591998-gmailcom.vercel.app/carts")
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);
   const handleRemoveItem = (product) => {
     console.log(product._id);
-    fetch(`http://localhost:5000/carts/${product._id}`, {
-      method: "DELETE",
-      headers: { "Content-Type": "application/json" },
-    })
+    fetch(
+      `https://repliq-h4nhqhae5-iamnahid591998-gmailcom.vercel.app/carts/${product._id}`,
+      {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.deletedCount > 0) {
@@ -26,18 +29,21 @@ const Cart = () => {
       });
   };
   const handleConfirmOrder = (product) => {
-    fetch(`http://localhost:5000/orders/${product._id}`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name: product.name,
-        photo: product.photo,
-        description: product.description,
-        price: product.price,
-        id: product.id,
-        user: user,
-      }),
-    })
+    fetch(
+      `https://repliq-h4nhqhae5-iamnahid591998-gmailcom.vercel.app/orders/${product._id}`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: product.name,
+          photo: product.photo,
+          description: product.description,
+          price: product.price,
+          id: product.id,
+          user: user,
+        }),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         toast.success("Confirmed Order");
