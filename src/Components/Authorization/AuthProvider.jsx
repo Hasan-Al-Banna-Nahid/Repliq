@@ -39,12 +39,9 @@ const AuthProvider = ({ children }) => {
       setUser(currentUser);
       if (currentUser) {
         axios
-          .post(
-            "https://repliq-cbgfolqwz-iamnahid591998-gmailcom.vercel.app/jwt",
-            {
-              email: currentUser.email,
-            }
-          )
+          .post("https://repliqq.vercel.app/jwt", {
+            email: currentUser.email,
+          })
           .then((res) => {
             localStorage.setItem("access-token", res.data.token);
             setIsLoading(false);

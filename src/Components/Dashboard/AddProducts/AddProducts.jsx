@@ -31,14 +31,11 @@ const AddProducts = () => {
         .then((data) => {
           setPhoto(data.data.display_url);
           console.log(data.data.display_url);
-          fetch(
-            "https://repliq-cbgfolqwz-iamnahid591998-gmailcom.vercel.app/products",
-            {
-              method: "POST",
-              headers: { "Content-type": "application/json" },
-              body: JSON.stringify(products),
-            }
-          );
+          fetch("https://repliqq.vercel.app/products", {
+            method: "POST",
+            headers: { "Content-type": "application/json" },
+            body: JSON.stringify(products),
+          });
           toast.success("Products Added");
         })
         .catch((error) => {

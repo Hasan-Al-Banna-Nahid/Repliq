@@ -4,9 +4,7 @@ import toast, { Toaster } from "react-hot-toast";
 const Banner = () => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    fetch(
-      "https://repliq-cbgfolqwz-iamnahid591998-gmailcom.vercel.app/products"
-    )
+    fetch("https://repliqq.vercel.app/products")
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);
@@ -14,7 +12,7 @@ const Banner = () => {
   // Function to handle adding a product to the cart
   const handleAddToCart = (product) => {
     // Make a POST request to your server with the product details
-    fetch("https://repliq-cbgfolqwz-iamnahid591998-gmailcom.vercel.app/carts", {
+    fetch("https://repliqq.vercel.app/carts", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

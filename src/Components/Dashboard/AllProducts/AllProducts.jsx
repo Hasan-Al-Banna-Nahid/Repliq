@@ -3,9 +3,7 @@ import React, { useEffect, useState } from "react";
 const AllProducts = () => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    fetch(
-      "https://repliq-cbgfolqwz-iamnahid591998-gmailcom.vercel.app/products"
-    )
+    fetch("https://repliqq.vercel.app/products")
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);

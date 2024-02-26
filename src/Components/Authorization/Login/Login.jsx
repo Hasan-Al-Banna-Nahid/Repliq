@@ -21,19 +21,16 @@ const Login = () => {
   const { accessLogin, googleLogin } = useContext(AuthContext);
   const handleGoogleLogin = () => {
     googleLogin().then((result) => {
-      fetch(
-        "https://repliq-cbgfolqwz-iamnahid591998-gmailcom.vercel.app/users",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            name: result.user.displayName,
-            email: result.user.email,
-          }),
-        }
-      );
+      fetch("https://repliqq.vercel.app/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: result.user.displayName,
+          email: result.user.email,
+        }),
+      });
     });
     navigate(from, { replace: true });
   };
@@ -47,19 +44,16 @@ const Login = () => {
         console.log(result.user);
         Swal.fire("Good job!", "Login Success!", "success");
         navigate(from, { replace: true });
-        fetch(
-          "https://repliq-cbgfolqwz-iamnahid591998-gmailcom.vercel.app/users",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              email: result.user.email,
-              name: result.user.name,
-            }),
-          }
-        );
+        fetch("https://repliqq.vercel.app/users", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: result.user.email,
+            name: result.user.name,
+          }),
+        });
       })
       .catch((err) => {
         Swal.fire({

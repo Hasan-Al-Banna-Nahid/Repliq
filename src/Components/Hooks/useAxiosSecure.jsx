@@ -8,7 +8,7 @@ const useAxiosSecure = () => {
   const navigate = useNavigate();
 
   const axiosSecure = axios.create({
-    baseURL: "https://repliq-cbgfolqwz-iamnahid591998-gmailcom.vercel.app",
+    baseURL: "https://repliqq.vercel.app",
   });
 
   useEffect(() => {

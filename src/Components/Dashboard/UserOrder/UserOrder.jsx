@@ -5,7 +5,7 @@ const userOrder = () => {
   const [orders, setOrders] = useState([]);
   const [user, setUser] = useState("");
   useEffect(() => {
-    fetch("https://repliq-cbgfolqwz-iamnahid591998-gmailcom.vercel.app/orders")
+    fetch("https://repliqq.vercel.app/orders")
       .then((res) => res.json())
       .then((data) => setOrders(data));
   }, []);
@@ -13,13 +13,10 @@ const userOrder = () => {
     orders.map((order) => setUser(order?.user?.email));
   }, []);
   const handleRemoveProduct = (order) => {
-    fetch(
-      `https://repliq-cbgfolqwz-iamnahid591998-gmailcom.vercel.app/orders/${order._id}`,
-      {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-      }
-    )
+    fetch(`https://repliqq.vercel.app/orders/${order._id}`, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+    })
       .then((res) => res.json())
       .then((data) => {
         if (data.deletedCount >= 1) {
