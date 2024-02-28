@@ -4,7 +4,6 @@ import toast, { Toaster } from "react-hot-toast";
 const AddProducts = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [photo, setPhoto] = useState("");
-
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
   };
@@ -15,13 +14,21 @@ const AddProducts = () => {
     const description = form.description.value;
     const price = form.price.value;
     const id = form.id.value;
-    const products = { name, description, photo, price, id };
+    const category = form.category.value;
+    const products = {
+      name,
+      description,
+      photo,
+      price,
+      id,
+      category,
+    };
     if (selectedFile) {
       const formData = new FormData();
       formData.append("image", selectedFile);
 
       fetch(
-        "https://api.imgbb.com/1/upload?key=86cd744cfdd1e1e0945188b63adb8883",
+        "https://api.imgbb.com/1/upload?key=6cc28e91c342bbb93a1c481ceaa27b72",
         {
           method: "POST",
           body: formData,
@@ -37,6 +44,8 @@ const AddProducts = () => {
             body: JSON.stringify(products),
           });
           toast.success("Products Added");
+          form.reset();
+          window.location.reload();
         })
         .catch((error) => {
           console.error("Error uploading image:", error);
@@ -56,9 +65,21 @@ const AddProducts = () => {
                   <span className="label-text font-bold">ID</span>
                 </label>
                 <input
-                  type="number"
+                  type="text"
                   placeholder="ID"
                   name="id"
+                  className="input input-bordered"
+                  required
+                />
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text font-bold">Category</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="Category"
+                  name="category"
                   className="input input-bordered"
                   required
                 />

@@ -1,11 +1,14 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Authorization/AuthProvider";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+  const navigate = useNavigate();
   const handleLogOut = () => {
     logOut();
+    window.location.reload();
+    navigate("/");
   };
   return (
     <div>
@@ -59,6 +62,7 @@ const Navbar = () => {
         <div className="navbar-end">
           {user ? (
             <>
+              <button>{user?.displayName}</button>
               <div className="dropdown dropdown-end">
                 <div
                   tabIndex={0}
@@ -77,7 +81,7 @@ const Navbar = () => {
                   className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
                 >
                   <li>
-                    <Link to={"/dashboard"} className="justify-between">
+                    <Link to={"/dashboard"} className={`justify-between `}>
                       Profile
                     </Link>
                   </li>

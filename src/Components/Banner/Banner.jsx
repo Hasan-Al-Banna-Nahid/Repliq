@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
+import { AuthContext } from "../Authorization/AuthProvider";
 
 const Banner = () => {
   const [products, setProducts] = useState([]);
+  const { user } = useContext(AuthContext);
   useEffect(() => {
     fetch("https://repliqq.vercel.app/products")
       .then((res) => res.json())
@@ -23,6 +25,7 @@ const Banner = () => {
         description: product.description,
         price: product.price,
         id: product.id,
+        email: user?.email,
       }),
     })
       .then((response) => response.json())
@@ -55,6 +58,7 @@ const Banner = () => {
                   <button
                     className="btn btn-primary"
                     onClick={() => handleAddToCart(product)}
+                    disabled={!user}
                   >
                     Add To Cart
                   </button>

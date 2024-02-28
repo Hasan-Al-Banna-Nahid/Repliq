@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
 const OrderList = () => {
-  const [orders, setOrders] = useState([]);
   const [user, setUser] = useState("");
+  const [orders, setOrders] = useState([]);
   useEffect(() => {
     fetch("https://repliqq.vercel.app/orders")
       .then((res) => res.json())

@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
+import useOrder from "../../Hooks/useOrder";
 
 const userOrder = () => {
   const [orders, setOrders] = useState([]);
   const [user, setUser] = useState("");
+  // useEffect(() => {
+  //   fetch("https://repliqq.vercel.app/orders")
+  //     .then((res) => res.json())
+  //     .then((data) => setOrders(data));
+  // }, []);
+  let [order] = useOrder();
+  console.log(order);
   useEffect(() => {
-    fetch("https://repliqq.vercel.app/orders")
-      .then((res) => res.json())
-      .then((data) => setOrders(data));
-  }, []);
-  useEffect(() => {
-    orders.map((order) => setUser(order?.user?.email));
+    order.map((order) => setUser(order?.user?.email));
   }, []);
   const handleRemoveProduct = (order) => {
     fetch(`https://repliqq.vercel.app/orders/${order._id}`, {
@@ -42,14 +45,20 @@ const userOrder = () => {
                 <th className="text-2xl font-bold">Name</th>
 
                 <th className="text-2xl font-bold">Description </th>
+                <th className="text-2xl font-bold">Quantity </th>
                 <th className="text-2xl font-bold">Action</th>
               </tr>
             </thead>
             <tbody>
-              {/* row 1 */}
-              {orders.map((order) => {
-                return (
-                  <tr>
+              {order.length === 0 ? (
+                <tr>
+                  <td colSpan="4" className="text-center font-bold">
+                    No orders
+                  </td>
+                </tr>
+              ) : (
+                order.map((order) => (
+                  <tr key={order.id}>
                     <th>
                       <label>
                         <input type="checkbox" className="checkbox" />
@@ -71,8 +80,8 @@ const userOrder = () => {
                         </div>
                       </div>
                     </td>
-
                     <td className="font-bold">{order.description}</td>
+                    <td>{order.quantity}</td>
                     <th className="flex justify-center gap-8">
                       <button
                         onClick={() => handleRemoveProduct(order)}
@@ -88,8 +97,8 @@ const userOrder = () => {
                       </button>
                     </th>
                   </tr>
-                );
-              })}
+                ))
+              )}
             </tbody>
             {/* foot */}
           </table>

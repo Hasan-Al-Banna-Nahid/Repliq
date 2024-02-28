@@ -13,6 +13,8 @@ import {
 
 import axios from "axios";
 import app from "./Firebase/Firebase.config";
+import toast from "react-hot-toast";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
 
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
@@ -20,8 +22,7 @@ const GoogleProvider = new GoogleAuthProvider();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-
+  const [isLoading, setIsLoading] = useState(false);
   const googleLogin = () => {
     return signInWithPopup(auth, GoogleProvider);
   };
@@ -34,27 +35,60 @@ const AuthProvider = ({ children }) => {
     setIsLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
+  const updateProfilePic = (photo) => {
+    return updateProfile(auth.currentUser, {
+      photoURL: photo,
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      setIsLoading(true);
+      console.log("currentUser", currentUser);
       if (currentUser) {
+        localStorage.setItem(
+          "refresh-token",
+          currentUser.stsTokenManager.refreshToken
+        );
+      }
+      if (currentUser) {
+        setIsLoading(true);
+
         axios
           .post("https://repliqq.vercel.app/jwt", {
-            email: currentUser.email,
+            email: currentUser?.email,
+            uid: currentUser?.uid,
           })
-          .then((res) => {
-            localStorage.setItem("access-token", res.data.token);
+          .then((response) => {
+            // Handle response here
+            localStorage.setItem("access-token", response.data.token);
+            console.log(response.data);
+          })
+          .catch((error) => {
+            // Handle error here
+            console.error("There was an error!", error);
+          })
+          .finally(() => {
             setIsLoading(false);
           });
-      } else {
+      }
+
+      if (!currentUser) {
         localStorage.removeItem("access-token");
+        localStorage.removeItem("refresh-token");
+        localStorage.removeItem("userInfo");
         setIsLoading(false);
       }
     });
-    return () => {
-      return unsubscribe();
-    };
+    return () => unsubscribe();
   }, []);
+
   const updateUser = (name, photo) => {
     setIsLoading(true);
     return updateProfile(auth.currentUser, {
@@ -73,6 +107,7 @@ const AuthProvider = ({ children }) => {
     accessLogin,
     googleLogin,
     logOut,
+    updateProfilePic,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

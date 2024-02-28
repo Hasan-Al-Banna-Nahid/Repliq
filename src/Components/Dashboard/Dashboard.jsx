@@ -10,6 +10,8 @@ const Dashboard = () => {
       .then((data) => setUser(data));
   }, []);
   const [isAdmin] = useAdmin();
+  console.log(isAdmin);
+  // const isAdmin = false;
   return (
     <div>
       <div className="drawer lg:drawer-open">
@@ -34,7 +36,7 @@ const Dashboard = () => {
             <li>
               <Link to={"/"}>Home</Link>
             </li>
-            {isAdmin?.admin === true ? (
+            {isAdmin?.admin == true ? (
               <div>
                 <li>
                   <Link to={"products"}>Add Products</Link>

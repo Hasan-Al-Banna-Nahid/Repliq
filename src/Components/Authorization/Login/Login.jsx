@@ -8,9 +8,9 @@ import { FaGoogle } from "react-icons/fa";
 import { FaToggleOn, FaToggleOff } from "react-icons/fa";
 import { AuthContext } from "../AuthProvider";
 import Navbar from "../../Navbar/Navbar";
+import axios from "axios";
 
 const Login = () => {
-  const { user } = useContext(AuthContext);
   const [isShow, setIsShow] = useState(false);
   const handlePasswordShow = () => {
     setIsShow(!isShow);
@@ -44,18 +44,16 @@ const Login = () => {
         console.log(result.user);
         Swal.fire("Good job!", "Login Success!", "success");
         navigate(from, { replace: true });
-        fetch("https://repliqq.vercel.app/users", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: result.user.email,
-            name: result.user.name,
-          }),
-        });
       })
+      .then(async (data) => {
+        // const userInfo = localStorage.getItem("userInfo");
+        // await axios.post("https://repliqq.vercel.app/makeUser", {
+        //   userInfo: userInfo,
+        // });
+      })
+
       .catch((err) => {
+        console.log(err);
         Swal.fire({
           icon: "error",
           title: "Oops...",
@@ -64,6 +62,12 @@ const Login = () => {
         return;
       });
   };
+  // const sendUserInfoToDb = () => {
+  //   const userInfo = localStorage.getItem("userInfo");
+  //   axios.post("https://repliqq.vercel.app/userPost", {
+  //     userInfo: userInfo,
+  //   });
+  // };
   return (
     <div>
       <Navbar />
@@ -80,6 +84,7 @@ const Login = () => {
           <div className="hero-content flex-col lg:flex-row-reverse">
             <form
               onSubmit={handleLogin}
+              // onClick={sendUserInfoToDb}
               className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100"
             >
               <div className="card-body">
